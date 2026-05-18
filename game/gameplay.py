@@ -8,15 +8,18 @@ def introduction():
     This shows once at the start of a save file to introduce the player to the game,
     and to select their name (And possibly later class, when class choice is implemented)
     '''
-    print(f"{Colors.OKGREEN}Welcome to the game{Colors.ENDC}")
-    player_name = input(f"What is your name? (Default: Pete)\n\nName: {Colors.BOLD}")
+    print(f"{Colors.OKGREEN}You wake up on a ship, your head is spinning and you can't quite see straight")
+    print(f"Through the fog you see two pirates aproach you, merging into one{Colors.ENDC}")
+    player_name = input(f"{Colors.OKGREEN}The unknown pirate asks:{Colors.ENDC} {Colors.OKCYAN}What is your name?{Colors.ENDC} (Default: Pete)\n\nName: {Colors.BOLD}")
     if player_name == "":
         player_name = "Pete"
     print(f"{Colors.ENDC}")
     player_character = Player(player_name)
-    print(f"{Colors.OKCYAN}Welcome to the ship {player_character.name}{Colors.ENDC}")
-    
-    print(f"\n{Colors.OKGREEN}What would you like to do?{Colors.ENDC}")
+    print(f"{Colors.OKCYAN}Welcome back to the land of the living {player_character.name}")
+    print(f"You hit your head pretty hard there, but we're going to need you to savvy up!{Colors.ENDC}")
+
+    print(f"\n{Colors.OKGREEN}You are unsure what happened, but you know you need to get out of here and find some treasure!")
+    print(f"What would you like to do?{Colors.ENDC}")
     print("1: Start exploring!")
     print("0: Exit to main menu\n")
     choice = input()
