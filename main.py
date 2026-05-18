@@ -1,5 +1,5 @@
 from game.characters.player import Player
-from game.gameplay import gameplay
+from game.gameplay import introduction
 from colors import Colors
 
 def main():
@@ -10,7 +10,7 @@ def main():
     print(f"{Colors.ENDC}")
     match choice:
         case "1":
-            gameplay()
+            introduction()
             main()
         case "0":
             return 0
