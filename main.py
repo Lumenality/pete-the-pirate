@@ -3,18 +3,16 @@ from game.gameplay import gameplay
 from colors import Colors
 
 def main():
-    # Dummy-Define the player character
-    player_character = Player("Pete")
-
     print("\nWhat would you like to do?")
     print("1: Play game")
-    print("2: Exit\n")
-    choice = input()
+    print("0: Exit\n")
+    choice = input(f"{Colors.BOLD}")
+    print(f"{Colors.ENDC}")
     match choice:
         case "1":
-            print(f"\n{player_character}")
             gameplay()
-        case "2":
+            main()
+        case "0":
             return 0
         case _:
             print(f"{Colors.FAIL}ERR:{Colors.FAIL}Something probably went wrong, try again!")

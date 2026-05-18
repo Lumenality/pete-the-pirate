@@ -1,11 +1,13 @@
 from game.characters.player import Player
 from colors import Colors
 
+
 def gameplay():
-    print(f"Welcome to the game")
-    player_name = input("What is your name?\n")
+    print("Welcome to the game")
+    player_name = input(f"What is your name?\n{Colors.BOLD}")
+    print(f"{Colors.ENDC}")
     player_character = Player(player_name)
-    print(f"\nWelcome to the ship {player_name}")
+    print(f"\n{Colors.OKGREEN}Welcome to the ship {player_name}{Colors.ENDC}")
     
     print("\nWhat would you like to do?")
     print("1: Restart")
