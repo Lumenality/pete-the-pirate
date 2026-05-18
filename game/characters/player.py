@@ -1,15 +1,14 @@
 from enum import Enum
 from colors import Colors
-
-MAX_LEVEL = 10
+from game.characters.character import Character
+from constants import MAX_LEVEL
 
 class PlayerClasses(Enum):
     PIRATE = 'Pirate'
 
-class Character():
+class Player(Character):
     def __init__(self,name,level = 1,character_class = PlayerClasses.PIRATE.value):
-        self.name = name
-        self.level = level
+        super().__init__(name,level)
         self.character_class = character_class
         self.inventory = None
     

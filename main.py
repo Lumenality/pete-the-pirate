@@ -1,18 +1,19 @@
-from character import Character
+from game.characters.player import Player
+from game.gameplay import gameplay
 from colors import Colors
 
 def main():
     # Dummy-Define the player character
-    player_character = Character("Pete")
+    player_character = Player("Pete")
 
     print("\nWhat would you like to do?")
-    print("1: View character info")
+    print("1: Play game")
     print("2: Exit\n")
     choice = input()
     match choice:
         case "1":
             print(f"\n{player_character}")
-            main()
+            gameplay()
         case "2":
             return 0
         case _:
