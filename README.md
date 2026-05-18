@@ -22,7 +22,9 @@ A text-based adventure game where you explore a ship, battle enemies, and collec
 # Clone the repository
 git clone https://github.com/yourusername/pete-the-pirate.git
 cd pete-the-pirate
+```
 
+```bash
 # Run the game
 python main.py
 ```
