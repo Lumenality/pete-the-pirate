@@ -1,4 +1,6 @@
 from game.characters.player import Player
+from game.characters.enemy import Enemy
+from game.combat import combat
 from colors import Colors
 
 def introduction():
@@ -7,7 +9,9 @@ def introduction():
     and to select their name (And possibly later class, when class choice is implemented)
     '''
     print(f"{Colors.OKGREEN}Welcome to the game{Colors.ENDC}")
-    player_name = input(f"What is your name?\n\nName: {Colors.BOLD}")
+    player_name = input(f"What is your name? (Default: Pete)\n\nName: {Colors.BOLD}")
+    if player_name == "":
+        player_name = "Pete"
     print(f"{Colors.ENDC}")
     player_character = Player(player_name)
     print(f"{Colors.OKCYAN}Welcome to the ship {player_character.name}{Colors.ENDC}")
@@ -19,14 +23,14 @@ def introduction():
     match choice:
         case "1":
             # RIGHT NOW THIS JUST PLACES US RIGHT INTO THE START OF THE LOOP
-            gameplay()
+            gameplay(player_character)
         case "0":
             return 0
         case _:
             print(f"{Colors.FAIL}ERR:{Colors.FAIL}Something probably went wrong, try again!")
-            gameplay()
+            gameplay(player_character)
 
-def gameplay():
+def gameplay(player_character):
     '''
     Core gameplay loop, where you explore the rooms of
     '''
@@ -34,20 +38,30 @@ def gameplay():
     print(f"What do you do?{Colors.ENDC}")
     print("1: Enter room 1")
     print("2: Enter room 2")
+    print("i: Check your inventory")
     print("0: Start over\n")
-    choice = input(f"{Colors.BOLD}")
+    choice = input(f"{Colors.BOLD}").lower()
     print(f"{Colors.ENDC}")
     match choice:
         case "1":
             print(f"{Colors.OKGREEN}You enter room 1:{Colors.ENDC}")
             print(f"Inside you find a {Colors.FAIL}heinous beast{Colors.ENDC}!\n")
-            gameplay()
+            enemy = Enemy("Angy Crab")
+            is_victory = combat(player_character,enemy)
+            if not is_victory:
+                return
+            gameplay(player_character)
         case "2":
             print(f"{Colors.OKGREEN}You enter room 2:")
-            print(f"{Colors.WARNING}Treasures{Colors.ENDC} or whatever\n")
-            gameplay()
+            print(f"{Colors.WARNING}+10 Gold{Colors.ENDC} Treasure or whatever\n")
+            player_character.inventory["gold"] += 10
+            gameplay(player_character)
+        case "i":
+            print(f"Shirt: {player_character.inventory["equipment"]["shirt"]}")
+            print(f"Gold: {Colors.WARNING}{player_character.inventory["gold"]}{Colors.ENDC}")
+            gameplay(player_character)
         case "0":
             introduction()
         case _:
             print(f"{Colors.FAIL}ERR:{Colors.FAIL}Something probably went wrong, try again!")
-            gameplay()
+            gameplay(player_character)
